@@ -1,29 +1,55 @@
-This file explains how to run the experiments.
-Using uv, you can simply run uv sync --all-groups, which installs all dependencies including those for the experiments and visualization.
+# OC-space: a Unifying Perspective on Verification of Tree Ensembles
+This readme file explains how to run the experiments.
 
-Then, all experiments are in the oc_space_experiment.py file. It requires the compressed models file: data/raw/OC-space_paper_compression.txt.
+## Cloning the repository
+Using uv, you can simply run `uv sync --all-groups`, which installs all dependencies including those for the experiments and visualization.
+If you require only access to the algorithms and methods presented in the paper, a simple `uv sync` or `pip install .` will do.
 
-Step 1 (Enumeration):
+## Running the experiments
+All experiment scripts are in the oc_space_experiment.py file. It requires downloading the compressed models (110MB) file and placing it in the correct directory. 
+```
+mkdir -r data/raw
+wget -O data/raw/OC-space_paper_compression.txt "https://zenodo.org/records/20758998/files/OC-space_paper_compression.txt?download=1"
+```
 
-    Otherwise, one can run the command: uv run python experiments/oc_space_experiment.py list_pareto_models data/raw/main_paper_compression.txt $SAVE_DIRECTORY$
-    With $SAVE_DIRECTORY$ the path where you'd like the enumerated models to be saved. Note: the models can be extremely large, so make sure you have plenty of storage space.
+### Step 1 (Enumeration):
+```
+uv run python experiments/oc_space_experiment.py list_pareto_models data/raw/main_paper_compression.txt $SAVE_DIRECTORY$
+```
 
-    This command prints a list of commands to enumerate all pareto front models. Ideally, you'd write this list to a file in the 'experiments/settings' folder.
-    The list can then be run using a bash script: 'uv run bash run.sh settings/$SETTING_FILE$ $N_THREADS$'.
+With `$SAVE_DIRECTORY$` the path where you'd like the enumerated models to be saved. Note: the models can be extremely large, so make sure you have plenty of storage space. 
+    
+This command prints a list of commands to enumerate all pareto front models. Ideally, you'd write this list to a file in the 'experiments/settings' folder.
+    
+The list can then be run using the provided bash script: 
+```
+uv run bash run.sh settings/$SETTING_FILE$ $N_THREADS$
+```
 
-Step 2 (Verification: Closest adversarial example):
-    The verification tasks are described in verification.py, but can be run in the same way as enumeration.
+### Step 2 (Verification: Closest adversarial example):
+    
+The verification tasks are described in verification.py, but can be run in the same way as enumeration.
 
-    First, use 'uv run python oc_space_experiment list_enumerated_models $ENUMERATION_RESULTS_FILE$ data/raw/main_paper_compression.txt
-    with the $ENUMERATION_RESULTS_FILE$ probably being results/$SETTING_FILE$.
+```
+uv run python oc_space_experiment list_enumerated_models $ENUMERATION_RESULTS_FILE$ data/raw/main_paper_compression.txt
+```
 
-    Same way as above, you can save this list of commands to a file and use the bash script to parallellize these.
+with the `$ENUMERATION_RESULTS_FILE$` probably being `results/$SETTING_FILE$` if you've followed the enumeration commands above.
 
-Step 3 (Fairness, hybrid norm):
-    These use the same strategy as above, but with different entry points in oc_space_experiment -> check the file for specifics.
+Same way as above, you can save this list of generated commands to a file and use the bash script to parallellize these.
 
-Step 4 (Lipschitz):
-    Simply run 'uv run python oc_space_experiment lipschitz Vehicle'
+### Step 3 (Fairness, hybrid norm):
+These use the same strategy as above, but with different entry points in 'experiments/oc_space_experiment'. I recommend checking out this file for the respective commands to execute these experiments. 
+
+### Step 4 (Lipschitz):
+```
+uv run python oc_space_experiment lipschitz Vehicle
+```
+
+## Reference
+Martens, T., Devos, L., Cascioli, L., Meert, W., Blockeel, H. and Davis, J. OC-space: a Unifying Perspective on Verification of Tree Ensembles. In: Proceedings of the 43rd International Conference on Machine Learning (2026)
+
+
 
 
 
