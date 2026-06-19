@@ -25,30 +25,6 @@ export PYTHONUNBUFFERED=1
 #python experiments.py commands $DATASETS | parallel --slf cluster --env PATH --wd $WDIR --joblog task.log --resume --progress | tee $OUTNAME
 
 
-# if [ "${HOSTNAME}" = "laurens-hp" ]; then
-#     NTHREADS=4
-# elif [ "${HOSTNAME}" = "himec05" ]; then
-#     NTHREADS=8
-# elif [ "${HOSTNAME}" = "himec01" ]; then
-#     NTHREADS=20
-# elif [ "${HOSTNAME}" = "himec03" ]; then
-#     NTHREADS=6
-# elif [ "${HOSTNAME}" = "himec04" ]; then
-#     NTHREADS=6
-# elif [ "${HOSTNAME}" = "himec08" ]; then
-#     NTHREADS=1
-# elif [ "${HOSTNAME}" = "himec07" ]; then
-#     NTHREADS=1
-# elif [ "${HOSTNAME}" = "pinac44" ]; then
-#     NTHREADS=20
-# elif [ "${HOSTNAME}" = "himec10" ]; then
-#     NTHREADS=2
-# elif [ "${HOSTNAME}" = "himec12" ]; then
-#     NTHREADS=2
-# else
-#     NTHREADS=1  # assuming new
-# fi
-
 echo "###################################################"  | tee --append $OUTNAME
 echo "  ${HOSTNAME}  ${DATE}" ${NTHREADS} THREADS           | tee --append $OUTNAME
 echo "###################################################"  | tee --append $OUTNAME
