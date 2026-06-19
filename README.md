@@ -45,7 +45,10 @@ These use the same strategy as above, but with different entry points in 'experi
 ```
 uv run python oc_space_experiment lipschitz Vehicle
 ```
-
+### Notes
+- A Gurobi license is required for running the verification experiments. A free academic license can be requested [here](https://www.gurobi.com/academics).
+- The tree ensembles were compressed using [LOP](https://github.com/ML-KULeuven/lop_compress).
+- We use [Prada](https://github.com/laudv/prada) for dataset downloading. It requires setting a download location in your environment variables. 
 ## Reference
 Martens, T., Devos, L., Cascioli, L., Meert, W., Blockeel, H. and Davis, J. OC-space: a Unifying Perspective on Verification of Tree Ensembles. In: Proceedings of the 43rd International Conference on Machine Learning (2026)
 
