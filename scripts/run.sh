@@ -30,7 +30,7 @@ echo "  ${HOSTNAME}  ${DATE}" ${NTHREADS} THREADS           | tee --append $OUTN
 echo "###################################################"  | tee --append $OUTNAME
 
 cat $CMD_LIST |
-    /home/timo/bin/parallel --line-buffer -j${NTHREADS} \
+    parallel --line-buffer -j${NTHREADS} \
     --env OPENBLAS_NUM_THREADS \
     --env MKL_NUM_THREADS \
     --env OMP_NUM_THREADS \

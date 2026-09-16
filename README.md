@@ -8,8 +8,8 @@ If you require only access to the algorithms and methods presented in the paper,
 ## Running the experiments
 All experiment scripts are in the oc_space_experiment.py file. It requires downloading the compressed models (110MB) file and placing it in the correct directory. 
 ```
-mkdir -r data/raw
-wget -O data/raw/OC-space_paper_compression.txt "https://zenodo.org/records/20758998/files/OC-space_paper_compression.txt?download=1"
+mkdir -p data/raw
+wget -O data/raw/main_paper_compression.txt "https://zenodo.org/records/20758998/files/OC-space_paper_compression.txt?download=1"
 ```
 
 ### Step 1 (Enumeration):
